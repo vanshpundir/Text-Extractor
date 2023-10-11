@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the image
-img = cv2.imread('/content/IMG_9518.jpg')
+img = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg')
 
 # Convert the image to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
