@@ -1,16 +1,15 @@
 from paddleocr import PaddleOCR
 
-# Initialize PaddleOCR with English language support and angle classification
-ocr = PaddleOCR(use_angle_cls=True, lang='en')
+class ExtractTypedText:
+    def __init__(self, use_angle_cls=True, lang='en'):
+        self.ocr = PaddleOCR(use_angle_cls=use_angle_cls, lang=lang)
 
-# Path to the image you want to perform OCR on
-img_path = '/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg'
-
-# Perform OCR on the image
-result = ocr.ocr(img_path, cls=True)
-
-# Iterate through the results and print the detected text lines
-for idx in range(len(result)):
-    res = result[idx]
-    for line in res:
-        print(line)
+    def read_image(self, img_path):
+        result = self.ocr.ocr(img_path, cls=True)
+        for res in result:
+            for line in res:
+                print(line[1][0])
+if __name__ == "__main__":
+    # Example usage:
+    ocr = ExtractTypedText()
+    ocr.read_image('/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg')
