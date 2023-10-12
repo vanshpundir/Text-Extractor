@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-class ImageProcessor:
+class CropImage:
     def __init__(self, image_path):
         self.image_path = image_path
         self.image = cv2.imread(self.image_path)
@@ -35,9 +35,9 @@ class ImageProcessor:
 
 
 def main():
-    image_path = 'images/extract_data/IMG_9518.jpg'
+    image_path = '../images/extract_data/IMG_9518.jpg'
 
-    image_processor = ImageProcessor(image_path)
+    image_processor = CropImage(image_path)
     image_processor.crop_image_to_largest_contour()
     image_processor.display_cropped_image()
 

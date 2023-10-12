@@ -39,6 +39,6 @@ class VerticalToHorizontal:
 
 # Example usage:
 if __name__ == '__main__':
-    image_path = "/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/test.png"
+    image_path = "/images/extract_data/test.png"
     converter = VerticalToHorizontal(image_path)
     converter.save_as_jpeg('rotated.jpg')
