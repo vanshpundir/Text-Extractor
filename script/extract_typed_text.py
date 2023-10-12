@@ -1,3 +1,4 @@
+import pandas as pd
 from paddleocr import PaddleOCR
 
 class ExtractTypedText:
@@ -8,8 +9,7 @@ class ExtractTypedText:
         result = self.ocr.ocr(img_path, cls=True)
         for res in result:
             for line in res:
-                print(line[1][0])
+                print(line)
 if __name__ == "__main__":
-    # Example usage:
     ocr = ExtractTypedText()
-    ocr.read_image('/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg')
+    ocr.read_image('/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/image_text.png')
