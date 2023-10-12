@@ -22,7 +22,7 @@ def main():
     converter.save_as_jpeg('rotated.jpg')
 
     # Example usage of CropImage
-    image_path_crop = "/home/shivam/Documents/Github/Text-Extractor/images/cropped_image.jpg"
+    image_path_crop = "/home/shivam/Documents/Github/Text-Extractor/images/extract_data/IMG_9518.jpg"
     image_processor = CropImage(image_path_crop)
     image_processor.crop_image_to_largest_contour()
     image_processor.display_cropped_image()

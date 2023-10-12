@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import math# Readim image
-img = cv2.imread("/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg")
+img = cv2.imread("/home/shivam/Documents/Github/Text-Extractor/images/cropped_image.jpg")
 
 # Convert to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
