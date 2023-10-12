@@ -17,10 +17,3 @@ class ImageOrientationChecker:
 
     def check_orientation(self):
         return self.orientation == 0
-
-# Example usage:
-if __name__ == '__main__':
-    image_path = "/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/test.png"
-    checker = ImageOrientationChecker(image_path)
-    is_horizontal = checker.check_orientation()
-    print("Is horizontal:", is_horizontal)

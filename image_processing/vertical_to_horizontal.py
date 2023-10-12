@@ -36,9 +36,3 @@ class VerticalToHorizontal:
     def save_as_png(self, output_path):
         rotated_img = self.rotate()
         rotated_img.save(output_path, 'PNG')
-
-# Example usage:
-if __name__ == '__main__':
-    image_path = "/images/extract_data/test.png"
-    converter = VerticalToHorizontal(image_path)
-    converter.save_as_jpeg('rotated.jpg')

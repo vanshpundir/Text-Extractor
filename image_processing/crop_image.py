@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 class CropImage:
     def __init__(self, image_path):
         self.image_path = image_path
@@ -32,15 +31,3 @@ class CropImage:
     def display_cropped_image(self):
         plt.imshow(cv2.cvtColor(self.cropped_image, cv2.COLOR_BGR2RGB))
         plt.show()
-
-
-def main():
-    image_path = '../images/extract_data/IMG_9518.jpg'
-
-    image_processor = CropImage(image_path)
-    image_processor.crop_image_to_largest_contour()
-    image_processor.display_cropped_image()
-
-
-if __name__ == '__main__':
-    main()
