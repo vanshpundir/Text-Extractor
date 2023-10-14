@@ -1,5 +1,6 @@
-from PIL import Image, ImageDraw
 import os
+from PIL import Image, ImageDraw
+
 
 def get_bbox(bounding_boxes, x_threshold=0, y_threshold=0):
     grouped_columns = []
@@ -23,32 +24,7 @@ def get_bbox(bounding_boxes, x_threshold=0, y_threshold=0):
 
     return grouped_columns
 
-def extract_corner_bboxes(image, grouped_columns):
-    corner_bboxes = []
-
-    for column in grouped_columns:
-        for box in column:
-            # Get the coordinates of the current box
-            x_min, y_min = box[0][0], box[0][1]
-            x_max, y_max = box[2][0], box[2][1]
-
-            # Extract corner bounding boxes and add them to the list
-            top_left_corner = [(x_min, y_min), (x_min + 10, y_min + 10)]  # Top left corner
-            top_right_corner = [(x_max - 10, y_min), (x_max, y_min + 10)]  # Top right corner
-            bottom_right_corner = [(x_max - 10, y_max - 10), (x_max, y_max)]  # Bottom right corner
-            bottom_left_corner = [(x_min, y_max - 10), (x_min + 10, y_max)]  # Bottom left corner
-
-            corner_bboxes.extend([top_left_corner, top_right_corner, bottom_right_corner, bottom_left_corner])
-
-    return corner_bboxes
-
-def draw_corner_bboxes(image, corner_bboxes):
-    draw = ImageDraw.Draw(image)
-
-    for bbox in corner_bboxes:
-        draw.rectangle(bbox, outline="red", width=2)
-
-def crop_bbox(image, grouped_columns, output_directory):
+def crop_columns(image, grouped_columns, output_directory):
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -59,9 +35,6 @@ def crop_bbox(image, grouped_columns, output_directory):
         x_max = max(box[2][0] for box in column)
         y_min = min(box[0][1] for box in column)
         y_max = max(box[2][1] for box in column)
-
-        # Print x_max and y_max coordinates of each bbox
-        print(f"Bbox {i + 1}: x_max={x_max}, y_max={y_max}")
 
         # Crop the column from the original image
         cropped_column = image.crop((x_min, y_min, x_max, y_max))
@@ -92,28 +65,14 @@ def main():
         y_max = max(box[2][1] for box in b_box)
         draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=2)
 
-    for i, b_box in enumerate(bbox):
-        x_max = max(box[2][0] for box in b_box)
-        y_max = max(box[2][1] for box in b_box)
-        print(f"Bounding Box {i + 1}: x_max={x_max}, y_max={y_max}")
-
     # Save or display the modified image
     image.save('modified/image.jpg')
     image.show()
-    # Extract corner bounding boxes
-    corner_bboxes = extract_corner_bboxes(image, bbox)
-
-    # Draw and visualize corner bounding boxes
-    draw_corner_bboxes(image, corner_bboxes)
-
-    # Save or display the modified image with corner bounding boxes
-    image.save('modified/image_with_corner_bboxes.jpg')
-    image.show()
 # Output directory to save cropped column images
-    output_directory = 'cropped_bbox'
+    output_directory = 'cropped_columns'
 
     # Crop and save individual columns as separate images
-    crop_bbox(image, bbox, output_directory)
+    crop_columns(image, bbox, output_directory)
 
 if __name__ == "__main__":
     main()
