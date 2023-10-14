@@ -30,3 +30,6 @@ class ImageOrientationHandler:
             rotated_img = rotated_img.convert('RGB')
 
         rotated_img.save(output_path, 'JPEG')
+
+
+

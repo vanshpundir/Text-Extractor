@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import math# Readim image
-img = cv2.imread("/home/shivam/Documents/Github/Text-Extractor/images/cropped_image.jpg")
+img = cv2.imread("/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/IMG_9518.jpg")
 
 # Convert to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -26,7 +26,7 @@ num_angles = len(angles)
 avg_angle = angle_sum / num_angles
 
 # Calculate rotation angle needed to make image horizontal
-rotation_angle = -np.rad2deg(avg_angle)+1
+rotation_angle = -np.rad2deg(avg_angle)-1.69
 print(rotation_angle)
 # Get center and dimensions
 height, width = img.shape[:2]
