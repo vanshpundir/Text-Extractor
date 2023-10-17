@@ -20,7 +20,7 @@ def centralize(img):
 
 
 model = load_model('/Users/vansh/PycharmProjects/Text-Extractor/script/model/cnn-mnist-new.h5')
-img = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/script/segmented_images/digit11.png')
+img = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/image_processing/451b6743-54e4-49cd-9574-532ccd3d14e1.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 thresh = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
