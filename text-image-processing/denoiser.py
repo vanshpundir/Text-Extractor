@@ -20,7 +20,7 @@ class Denoiser:
 
 if __name__ == "__main__":
     input_path = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_binary.png')
-    output_path = 'processed_image/result_denoised.png'
+    output_path = 'processed_image'
 
     denoiser = Denoiser(input_path, output_path)
     denoiser.denoise_image()

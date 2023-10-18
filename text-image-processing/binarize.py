@@ -26,5 +26,9 @@ if __name__ == "__main__":
     input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result.png'
     output_binary_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_binary.png'
 
-    processor = Binarizer(input_image_path, output_binary_image_path)
-    processor.convert_to_binary()
+    processor = Binarizer(cv2.imread(input_image_path))
+    binary_image = processor.convert_to_binary()
+
+    # Optionally, you can display the binary image
+    cv2.imwrite(output_binary_image_path, binary_image)
+
