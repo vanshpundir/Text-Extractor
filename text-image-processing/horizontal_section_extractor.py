@@ -3,7 +3,7 @@ import numpy as np
 
 
 class HorizontalSectionExtractor:
-    def __init__(self, image, output_dir, threshold=60):
+    def __init__(self, image, output_dir, threshold=100):
         self.array = image
         self.output_dir = output_dir
         self.threshold = threshold
@@ -45,8 +45,8 @@ class HorizontalSectionExtractor:
 
 
 if __name__ == "__main__":
-    input_path = cv2.imread("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_denoised.png")
+    image = cv2.imread("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_denoised.jpg")
     output_directory = "/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit"
 
-    section_extractor = HorizontalSectionExtractor(input_path, output_directory)
+    section_extractor = HorizontalSectionExtractor(image, output_directory)
     section_extractor.extract_sections()

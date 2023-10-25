@@ -27,7 +27,7 @@ class AddWhiteLine:
         cv2.imwrite(output_path, processed_image)
 
 if __name__ == "__main__":
-    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_vertical.png'
+    input_image_path = '/Users/vansh/Downloads/IMG_0037.jpg'
     output_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result.png'
 
     image_processor = AddWhiteLine(input_image_path)
