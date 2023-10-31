@@ -45,8 +45,8 @@ def predict_single_digit(model_path, image_path):
         return None
 
 # Usage example:
-model_path = '/Users/vansh/Downloads/cnn-mnist-new (1).h5'  # Replace with your model path
-image_dir = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit_final'
+model_path = '/Users/vansh/Downloads/cnn-mnist-new.h5'  # Replace with your model path
+image_dir = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/text-image-processing/processed_image/single_digit_padding'
 
 for image_filename in os.listdir(image_dir):
     image_path = os.path.join(image_dir, image_filename)

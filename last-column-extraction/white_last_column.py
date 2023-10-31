@@ -25,4 +25,4 @@ def process_image(input_image_path, output_image_path=None, threshold=80):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-process_image("/Users/vansh/PycharmProjects/Text-Extractor/images/handwritten_img/Screenshot 2023-10-14 at 10.48.19 AM.png","/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/white_image.png",115)
+process_image("/Users/vansh/PycharmProjects/Text-Extractor/images/handwritten_img/Screenshot 2023-10-14 at 10.48.19 AM.png","/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/white_image.png",65)
