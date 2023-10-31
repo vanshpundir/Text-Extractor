@@ -1,32 +1,36 @@
 import cv2
 import numpy as np
 
-def process_image(input_image_path, output_image_path=None, threshold=100, window_size=10):
-    # Load the image
-    image = cv2.imread(input_image_path)
+# Read the image
+image = cv2.imread('/home/shivam/Documents/Github/Text-Extractor/script/rotated_image.jpg', cv2.IMREAD_GRAYSCALE)
 
-    # Check if the image was loaded successfully
-    if image is None:
-        print("Failed to load image.")
-    else:
-        # Iterate over the image and modify pixel values
-        for i in range(image.shape[0]):
-            for j in range(image.shape[1] - window_size):
-                # Calculate the mean intensity in the horizontal window
-                window_mean = np.mean(image[i, j:j+window_size])
+# Apply GaussianBlur to reduce noise and improve line detection
+blurred = cv2.GaussianBlur(image, (5, 5), 0)
 
-                # Check if the mean intensity is below the threshold
-                if window_mean < threshold:
-                    image[i, j:j+window_size] = 255
+# Apply edge detection to highlight features
+edges = cv2.Canny(blurred, 50, 150, apertureSize=3)
 
-        # Save the modified image if an output path is provided
-        if output_image_path:
-            cv2.imwrite(output_image_path, image)
+# Use probabilistic Hough Transform to detect lines
+lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=50, minLineLength=100, maxLineGap=10)
 
-        # Display the modified image (optional)
-        cv2.imshow("Modified Image", image)
-        cv2.waitKey(0)
+# Create masks for horizontal and vertical lines
+horizontal_mask = np.array([line[0][1] for line in lines], dtype=np.float32) < np.pi / 4  # Horizontal lines have angles close to 0 or π
+vertical_mask = np.array([line[0][1] for line in lines], dtype=np.float32) > np.pi / 2  # Vertical lines have angles close to π/2
 
-        cv2.destroyAllWindows()
+# Draw the detected horizontal lines on a copy of the original image
+horizontal_lines_image = image.copy()
+for line, is_horizontal in zip(lines, horizontal_mask):
+    if is_horizontal:
+        x1, y1, x2, y2 = line[0]
+        cv2.line(horizontal_lines_image, (x1, y1), (x2, y2), 255, 2)
 
-process_image("/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/white_image.png", "output.jpg", threshold=33, window_size=10)
+# Draw the detected vertical lines on a copy of the original image
+vertical_lines_image = image.copy()
+for line, is_vertical in zip(lines, vertical_mask):
+    if is_vertical:
+        x1, y1, x2, y2 = line[0]
+        cv2.line(vertical_lines_image, (x1, y1), (x2, y2), 255, 2)
+
+# Save the results
+cv2.imwrite('output_horizontal_lines.jpg', horizontal_lines_image)
+cv2.imwrite('output_vertical_lines.jpg', vertical_lines_image)
