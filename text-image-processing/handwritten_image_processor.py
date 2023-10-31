@@ -93,7 +93,7 @@ class HandWrittenImageProcessor:
                 right_cropper.crop_image()
 
 if __name__ == "__main__":
-    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/blue_pen_stroke.jpg'
+    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/output_image.png'
     processor = HandWrittenImageProcessor(input_image_path)
 
     # Apply the processing steps
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     processor.apply_denoiser()
     processor.apply_horizontal_section_extractor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_denoised.jpg")
     processor.apply_digit_processor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit")
-    processor.add_padding("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit",'/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit_final',4)
+    #$processor.add_padding("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit",'/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit_final',4)
