@@ -93,7 +93,7 @@ class HandWrittenImageProcessor:
                 right_cropper.crop_image()
 
 if __name__ == "__main__":
-    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/images/handwritten_img/Screenshot 2023-10-18 at 9.29.08 PM.png'
+    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/blue_pen_stroke.jpg'
     processor = HandWrittenImageProcessor(input_image_path)
 
     # Apply the processing steps
