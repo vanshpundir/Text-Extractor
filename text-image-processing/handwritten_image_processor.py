@@ -34,10 +34,12 @@ class HandWrittenImageProcessor:
         obj = HorizontalSectionExtractor(self.image.array, output_dir)
         obj.extract_sections()
 
-    def apply_digit_processor(self, horizontal_path_dir,output_dir="text-image-processing/processed_image/single_digit"):
-        digits = DigitProcessor(horizontal_path_dir,output_dir)
+    def apply_digit_processor(self, horizontal_path_dir,
+                              output_dir="text-image-processing/processed_image/single_digit"):
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        digits = DigitProcessor(horizontal_path_dir, output_dir)
         digits.process_images_in_directory()
-
     def add_padding(self,input_dir, output_dir, padding_size=100):
         # Ensure the output directory exists, create it if necessary
         if not os.path.exists(output_dir):
@@ -93,13 +95,13 @@ class HandWrittenImageProcessor:
                 right_cropper.crop_image()
 
 if __name__ == "__main__":
-    input_image_path = '/Users/vansh/PycharmProjects/Text-Extractor/last-column-extraction/output_image.png'
-    processor = HandWrittenImageProcessor(input_image_path)
+        input_image_path = f'/Users/vansh/PycharmProjects/Text-Extractor/data/columns/colu./jpg'
+        processor = HandWrittenImageProcessor(input_image_path)
 
-    # Apply the processing steps
-    processor.apply_add_white_line()
-    processor.apply_binarize()
-    processor.apply_denoiser()
-    processor.apply_horizontal_section_extractor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_denoised.jpg")
-    processor.apply_digit_processor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit")
-    #$processor.add_padding("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit",'/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit_final',4)
+        # Apply the processing steps
+        processor.apply_add_white_line()
+        processor.apply_binarize()
+        processor.apply_denoiser()
+        processor.apply_horizontal_section_extractor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/result_denoised.jpg")
+        processor.apply_digit_processor("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit",f"/Users/vansh/PycharmProjects/Text-Extractor/data/All Images/Column{i}")
+        #$processor.add_padding("/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit",'/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/single_digit_final',4)
