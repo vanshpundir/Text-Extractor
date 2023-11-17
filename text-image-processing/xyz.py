@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Load the image
-image = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit/section_2.png')
+image = cv2.imread('/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/horizontal_digit/section_2.png')
 
 # Convert the image to grayscale
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -42,7 +42,7 @@ if left_digit_image is None or right_digit_image is None:
 
 # Save the left and right digit images if they exist
 if left_digit_image is not None:
-    cv2.imwrite('/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/single_digit_processed/left_digit.png', left_digit_image)
+    cv2.imwrite('/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/single_digit_processed/left_digit.png', left_digit_image)
 
 if right_digit_image is not None:
-    cv2.imwrite('/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/single_digit_processed/right_digit.png', right_digit_image)
+    cv2.imwrite('/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/single_digit_processed/right_digit.png', right_digit_image)

@@ -42,7 +42,7 @@ class VerticalImageSplitter:
 
 if __name__ == "__main__":
     input_path = "/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/processed_image/horizontal_digit/section_4.png"
-    output_directory = "text-image-processing/processed_image/single_digit"
+    output_directory = "image_processing_text/processed_image/single_digit"
 
     image_splitter = VerticalImageSplitter(input_path, output_directory)
     image_splitter.split_image()

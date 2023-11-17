@@ -69,7 +69,7 @@ def main():
     image.save('modified/image.jpg')
     image.show()
 # Output directory to save cropped column images
-    output_directory = 'cropped_columns'
+    output_directory = 'final_images'
 
     # Crop and save individual columns as separate images
     crop_columns(image, bbox, output_directory)

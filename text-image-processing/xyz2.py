@@ -43,7 +43,7 @@ def process_image(image_path):
         cv2.imwrite(right_digit_path, right_digit_image)
 
 # Output directory for processed images
-output_directory = '/Users/vansh/PycharmProjects/Text-Extractor/text-image-processing/single_digit_processed'
+output_directory = '/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/single_digit_processed'
 
 # Create the output directory if it doesn't exist
 if not os.path.exists(output_directory):
