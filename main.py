@@ -36,7 +36,7 @@ class Main:
         processor.apply_horizontal_section_extractor(
             "/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/result_denoised.jpg",
             '/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/horizontal_image')
-
+ 
     def extract_last_column(self):
         # Read the Excel file
         df = pd.read_excel(self.file_path)
