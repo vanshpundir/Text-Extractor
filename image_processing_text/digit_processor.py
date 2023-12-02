@@ -6,6 +6,16 @@ class DigitProcessor:
         self.input_directory = input_directory
         self.output_directory = output_directory
 
+    def clear_output_directory(self):
+        # Clear the output directory
+        for file_name in os.listdir(self.output_directory):
+            file_path = os.path.join(self.output_directory, file_name)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception as e:
+                print(f"Error deleting {file_path}: {e}")
+
     def process_image(self, image_path):
         image = cv2.imread(image_path)
 
@@ -51,6 +61,8 @@ class DigitProcessor:
             cv2.imwrite(right_digit_path, right_digit_image)
 
     def process_images_in_directory(self):
+
+        self.clear_output_directory()
         # Create the output directory if it doesn't exist
         if not os.path.exists(self.output_directory):
             os.makedirs(self.output_directory)

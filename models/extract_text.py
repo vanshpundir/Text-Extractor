@@ -1,7 +1,9 @@
 import subprocess
 import os
+import numpy  as np
 
 def extractText(image_path):
+    np.int = int
     # Get the directory of the current script
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -23,5 +25,5 @@ def extractText(image_path):
         print("An error occurred:", e)
 #
 if __name__ == "__main__":
-    image_path = 'image_processing/rotated.jpg'  # Using a relative path for the image
+    image_path = '/Users/vansh/PycharmProjects/Text-Extractor/image_processing/rotated.jpg'  # Using a relative path for the image
     extractText(image_path)

@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-
+import os
 
 class HorizontalSectionExtractor:
     def __init__(self, image, output_dir, threshold=100):
@@ -8,7 +8,20 @@ class HorizontalSectionExtractor:
         self.output_dir = output_dir
         self.threshold = threshold
 
+
+
+    def clear_output_directory(self):
+        # Clear the output directory
+        for file_name in os.listdir(self.output_dir):
+            file_path = os.path.join(self.output_dir, file_name)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception as e:
+                print(f"Error deleting {file_path}: {e}")
+
     def extract_sections(self):
+        self.clear_output_directory()
         # Read the image
         image = self.array
 

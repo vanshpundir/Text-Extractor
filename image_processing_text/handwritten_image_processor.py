@@ -30,6 +30,9 @@ class HandWrittenImageProcessor:
 
     def apply_horizontal_section_extractor(self, image_path, output_dir):
         self.image.array = cv2.imread(image_path)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
         obj = HorizontalSectionExtractor(self.image.array, output_dir)
         obj.extract_sections()
 

@@ -1,6 +1,7 @@
 import tensorflow as tf
 import cv2
 import numpy as np
+import os
 
 class Inference:
     def __init__(self, model_path):
@@ -18,12 +19,21 @@ class Inference:
         predicted_digit = np.argmax(predictions)
         return predicted_digit
 
+    def mnist_result(self, single_digit='/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit'):
+
+
+        file_value = {}
+        for file in os.listdir(single_digit):
+            if file.endswith(".png"):
+                img = self.preprocess_image(os.path.join(single_digit, file))
+                res = self.predict(img)
+                file_value[file] = res
+        return file_value
+
 if __name__ =='__main__':
 # Usage
     model_path = "mnist_model_final.h5"
-    image_path = '/image_processing_text/image_processing_text/processed_image/single_digit/left_digit_section_1.png'
+    image_path = '/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit/left_digit_section_5.png'
 
     digit_predictor = Inference(model_path)
-    preprocessed_image = digit_predictor.preprocess_image(image_path)
-    predicted_digit = digit_predictor.predict(preprocessed_image)
-    print("Predicted Digit:", predicted_digit)
+    print(digit_predictor.mnist_result())
