@@ -16,7 +16,7 @@ class LastColumn:
             for line in f:
                 data = json.loads(line)
                 break
-        image = cv2.imread("/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/[1, 37, 2904, 857]_0.jpg")
+        image = cv2.imread("output/rotated/[1, 37, 2904, 857]_0.jpg")
         # Assuming data['res'] contains a list of entries, each having a list of points in 'text_region'
         all_boxes = [point for entry in data['res'] for point in entry['text_region']]
 
@@ -88,8 +88,8 @@ class LastColumn:
 
 
 if __name__ == "__main__":
-    last_column = LastColumn("/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/res_0.txt", cv2.imread(
-        "/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/[1, 37, 2904, 857]_0.jpg"))
+    last_column = LastColumn("output/rotated/res_0.txt", cv2.imread(
+        "output/rotated/[1, 37, 2904, 857]_0.jpg"))
     bbox, cropped_image = last_column.extract_last_column()
     cv2.imshow("image", cropped_image)
     cv2.waitKey(0)

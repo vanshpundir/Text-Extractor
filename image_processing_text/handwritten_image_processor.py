@@ -94,13 +94,13 @@ class HandWrittenImageProcessor:
                 right_cropper.crop_image()
 
 if __name__ == "__main__":
-        input_image_path = f'/Users/vansh/PycharmProjects/Text-Extractor/images/extract_data/img.png'
+        input_image_path = f'images/extract_data/img.png'
         processor = HandWrittenImageProcessor(input_image_path)
 
         # Apply the processing steps
         processor.apply_add_white_line()
         processor.apply_binarize()
-        processor.apply_denoiser("/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image")
-        processor.apply_horizontal_section_extractor("/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/result_denoised.jpg",'/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/horizontal_image')
+        processor.apply_denoiser("image_processing_text/processed_image")
+        processor.apply_horizontal_section_extractor("image_processing_text/processed_image/result_denoised.jpg",'image_processing_text/processed_image/horizontal_image')
         #processor.apply_digit_processor("/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/image_processing_text/processed_image/horizontal_image","/Users/vansh/PycharmProjects/Text-Extractor/final_images")
         #$processor.add_padding("/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit",'/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit_final',4)

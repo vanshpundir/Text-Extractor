@@ -18,7 +18,7 @@ class Main:
 
     def get_last_column(self):
         bbox, cropped_image = self.last_column.extract_last_column()
-        save_image = "/Users/vansh/PycharmProjects/Text-Extractor/cropped_image.jpg"
+        save_image = "cropped_image.jpg"
         cv2.imwrite(save_image, cropped_image)
 
         return cropped_image, save_image
@@ -32,10 +32,10 @@ class Main:
         # Apply the processing steps
         processor.apply_add_white_line()
         processor.apply_binarize()
-        processor.apply_denoiser("/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/result_denoised.jpg")
+        processor.apply_denoiser("image_processing_text/result_denoised.jpg")
         processor.apply_horizontal_section_extractor(
-            "/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/result_denoised.jpg",
-            '/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/horizontal_image')
+            "image_processing_text/result_denoised.jpg",
+            'image_processing_text/processed_image/horizontal_image')
  
     def extract_last_column(self):
         # Read the Excel file
@@ -133,13 +133,13 @@ class Main:
 
 if __name__ == "__main__":
     # Replace the file path, image_dir, and model_path with your specific paths
-    file_path = "/Users/vansh/PycharmProjects/Text-Extractor/script/output/rotated/[2, 2, 2902, 846]_0.xlsx"
-    image_dir = "/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/horizontal_image"
-    model_path = "/Users/vansh/PycharmProjects/Text-Extractor/model/mnist_model_final.h5"
-    text_path = "/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/res_0.txt"
-    image_path = "/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/[1, 37, 2904, 857]_0.jpg"
+    file_path = "script/output/rotated/[2, 2, 2902, 846]_0.xlsx"
+    image_dir = "image_processing_text/processed_image/horizontal_image"
+    model_path = "model/mnist_model_final.h5"
+    text_path = "output/rotated/res_0.txt"
+    image_path = "output/rotated/[1, 37, 2904, 857]_0.jpg"
     # Create an instance of the Main class and call the get_two_digit_number method
     main_instance = Main(file_path, text_path, image_path=image_path, image_dir=image_dir)
     main_instance.horizontal_image()
     main_instance.delete_small_height_images(20)
-    print(main_instance.get_two_digit_number())
+
