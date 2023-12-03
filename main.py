@@ -115,7 +115,7 @@ class Main:
         last_column = self.extract_last_column()
         numbers = self.get_two_digit_number()
 
-        gain =  0
+        gain = 0
         for i in range(len(last_column)):
             # Check if the horizontal image has valid information
             if last_column[i] == numbers[i]:
@@ -123,8 +123,11 @@ class Main:
                 gain += 1
             elif last_column[i] is None:
                 last_column[i] = numbers[i]
-        df[:-1] = last_column
-        print("ACCURACY IS :", (gain/len(numbers)) * 100)
+
+        # Update the last column of the DataFrame
+        df.iloc[:, -1] = last_column
+
+        print("ACCURACY IS:", (gain / len(numbers)) * 100)
         return df
 
     def delete_small_height_images(self, height_threshold=10):
