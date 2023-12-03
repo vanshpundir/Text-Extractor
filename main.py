@@ -123,6 +123,7 @@ class Main:
                 gain += 1
             elif last_column[i] is None:
                 last_column[i] = numbers[i]
+        df[:-1] = last_column
         print("ACCURACY IS :", (gain/len(numbers)) * 100)
         return df
 
