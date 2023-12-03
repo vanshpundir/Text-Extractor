@@ -19,7 +19,7 @@ class Inference:
         predicted_digit = np.argmax(predictions)
         return predicted_digit
 
-    def mnist_result(self, single_digit='/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit'):
+    def mnist_result(self, single_digit='image_processing_text/processed_image/single_digit'):
 
 
         file_value = {}
@@ -33,7 +33,7 @@ class Inference:
 if __name__ =='__main__':
 # Usage
     model_path = "mnist_model_final.h5"
-    image_path = '/Users/vansh/PycharmProjects/Text-Extractor/image_processing_text/processed_image/single_digit/left_digit_section_5.png'
+    image_path = 'image_processing_text/processed_image/single_digit/left_digit_section_5.png'
 
     digit_predictor = Inference(model_path)
     print(digit_predictor.mnist_result())

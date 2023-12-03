@@ -23,7 +23,7 @@ class Main:
 
     def get_last_column(self):
         bbox, cropped_image = self.last_column.extract_last_column()
-        save_image = "/Users/vansh/PycharmProjects/Text-Extractor/cropped_image.jpg"
+        save_image = "cropped_image.jpg"
         cv2.imwrite(save_image, cropped_image)
 
         return cropped_image, save_image
@@ -111,16 +111,21 @@ class Main:
         return numbers
 
     def decider(self):
-
         df = pd.read_excel(self.file_path)
         last_column = self.extract_last_column()
         numbers = self.get_two_digit_number()
+
         for i in range(len(last_column)):
-            if numbers[i] == None:
-                numbers[i] = last_column[i]
+            # Check if the horizontal image has valid information
+            if numbers[i] is not None:
+                print("Horizontal image has valid information")
+                df.iloc[:, -1] = numbers
+            elif last_column[i] is not None:
+                print("Using last column as no valid information in the horizontal image")
+                df.iloc[:, -1] = last_column
             else:
-                print("seems correct")
-        df.iloc[:, -1] = numbers
+                print("Both horizontal image and last column have no valid information")
+
         return df
 
     def delete_small_height_images(self, height_threshold=10):
@@ -160,15 +165,17 @@ class Main:
 
 if __name__ == "__main__":
     # Replace the file path, image_dir, and model_path with your specific paths
-    full_image = '/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/[1, 37, 2904, 857]_0.jpg'
+    full_image = 'output/rotated/[1, 37, 2904, 857]_0.jpg'
     extractText(full_image)
     file_path = "script/output/rotated/[2, 2, 2902, 846]_0.xlsx"
     image_dir = "image_processing_text/processed_image/horizontal_image"
     model_path = "model/mnist_model_final.h5"
     text_path = "output/rotated/res_0.txt"
-    image_path = "/Users/vansh/PycharmProjects/Text-Extractor/output/rotated/[1, 37, 2904, 857]_0.jpg"
+    image_path = "output/rotated/[1, 37, 2904, 857]_0.jpg"
     # Create an instance of the Main class and call the get_two_digit_number method
     main_instance = Main(file_path, text_path, image_path=image_path, image_dir=image_dir, model_path=model_path)
     main_instance.horizontal_image()
     main_instance.delete_small_height_images(20)
-    main_instance.mnist_model("single_digit_dir")
+    main_instance.mnist_result()
+    print(main_instance.mnist_result())
+    main_instance.decider()
