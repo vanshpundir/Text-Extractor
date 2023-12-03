@@ -115,17 +115,15 @@ class Main:
         last_column = self.extract_last_column()
         numbers = self.get_two_digit_number()
 
+        gain =  0
         for i in range(len(last_column)):
             # Check if the horizontal image has valid information
-            if numbers[i] is not None:
-                print("Horizontal image has valid information")
-                df.iloc[:, -1] = numbers
-            elif last_column[i] is not None:
-                print("Using last column as no valid information in the horizontal image")
-                df.iloc[:, -1] = last_column
-            else:
-                print("Both horizontal image and last column have no valid information")
-
+            if last_column[i] == numbers[i]:
+                print("Correct")
+                gain += 1
+            elif last_column[i] is None:
+                last_column[i] = numbers[i]
+        print("ACCURACY IS :", (gain/len(numbers)) * 100)
         return df
 
     def delete_small_height_images(self, height_threshold=10):
@@ -176,6 +174,6 @@ if __name__ == "__main__":
     main_instance = Main(file_path, text_path, image_path=image_path, image_dir=image_dir, model_path=model_path)
     main_instance.horizontal_image()
     main_instance.delete_small_height_images(20)
-    main_instance.mnist_result()
-    print(main_instance.mnist_result())
+    # main_instance.mnist_result()
+    # print(main_instance.mnist_result())
     main_instance.decider()
